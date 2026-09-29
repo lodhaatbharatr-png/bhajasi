@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <meta name="theme-color" content="#120e0b" />
-<meta name="description" content="भजासी — संतवाणीचे शांत वाचन, ओळीनुसार अर्थ आणि दिवसानुसार साधना." />
+<meta name="description" content="भजासी — संतसाहित्याचे शांत वाचन, अर्थ आणि दिवसानुसार वाचन." />
 <title>भजासी — संतवाणी</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,11 +13,15 @@
 :root{--bg:#120e0b;--panel:#1b1511;--line:#382a21;--gold:#e7ae63;--gold2:#f4c47d;--cream:#f4eadc;--muted:#ad9d8e}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 50% -10%,#2d1d13 0,#120e0b 38%,#0d0a08 100%);color:var(--cream);font-family:'Noto Sans Devanagari',sans-serif}.app{min-height:100vh;max-width:760px;margin:auto;padding-bottom:72px}
 header{position:sticky;top:0;z-index:20;background:rgba(18,14,11,.97);backdrop-filter:blur(14px);border-bottom:1px solid rgba(231,174,99,.12);padding:10px 17px 9px}.brandline{display:flex;align-items:center;justify-content:space-between;gap:14px}.brandline h1{font-size:25px;line-height:1;margin:0;color:var(--gold2);font-weight:800;white-space:nowrap}.brandline span{font-size:10px;color:var(--muted);white-space:nowrap}.credit{margin-top:3px;font-size:9px;color:#89796b}.top-progress{height:2px;background:#292019;margin:8px -17px -9px}.top-progress i{display:block;height:100%;background:var(--gold);width:0;transition:width .2s}
-main{padding:12px 16px 24px}.search{margin:4px 0 16px}.search input{width:100%;background:#17110e;border:1px solid var(--line);border-radius:12px;padding:11px 13px;color:var(--cream);outline:none;font-size:14px;font-family:inherit}.search input:focus{border-color:var(--gold)}.section-title{display:flex;align-items:center;justify-content:space-between;margin:8px 2px 10px}.section-title h3{margin:0;font-size:16px;font-weight:800}.section-title span{font-size:10px;color:var(--muted)}.saint-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.saint-card,.work-card{width:100%;text-align:left;background:linear-gradient(145deg,#211912,#17110e);border:1px solid var(--line);border-radius:15px;padding:14px;cursor:pointer;color:var(--cream);font-family:inherit}.saint-card{min-height:74px}.saint-card:hover,.work-card:hover{border-color:#694d34}.saint-name{font-size:15px;font-weight:800}.saint-work{font-size:10px;color:var(--muted);margin-top:5px;line-height:1.55}
-.reader{display:none}.reader.show{display:block}.reader-head{padding:1px 1px 14px}.back{display:inline-block;border:0;background:none;color:var(--gold);padding:1px 0 8px;cursor:pointer;font-size:12px;font-family:inherit}.title-row{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}.reader h2{font-size:25px;font-weight:800;line-height:1.25;margin:0;color:#fff5e8}.day-label{font-size:11px;color:var(--gold2);white-space:nowrap;padding-bottom:2px}.reader-meta{display:none}.work-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:3px}.work-card h3{margin:0;font-size:16px;font-weight:800}.work-card p,.work-card span{display:none}
+main{padding:12px 16px 24px}.view{display:block}.view.hidden{display:none}.search{margin:4px 0 18px}.search input{width:100%;background:#17110e;border:1px solid var(--line);border-radius:12px;padding:11px 13px;color:var(--cream);outline:none;font-size:14px;font-family:inherit}.search input:focus{border-color:var(--gold)}
+.section{margin:0 0 22px}.section-title{display:flex;align-items:center;justify-content:space-between;margin:8px 2px 10px}.section-title h3{margin:0;font-size:17px;font-weight:800}.section-title span{font-size:10px;color:var(--muted)}
+.saint-grid,.work-grid,.theme-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.saint-card,.work-card,.theme-card,.continue-card{width:100%;text-align:left;background:linear-gradient(145deg,#211912,#17110e);border:1px solid var(--line);border-radius:15px;padding:14px;cursor:pointer;color:var(--cream);font-family:inherit}.saint-card{min-height:70px}.saint-card:hover,.work-card:hover,.theme-card:hover,.continue-card:hover{border-color:#694d34}.saint-name,.work-name,.theme-name{font-size:15px;font-weight:800}.saint-work{font-size:10px;color:var(--muted);margin-top:5px;line-height:1.5}.work-card{min-height:72px}.work-card .saint-work{margin-top:4px}.theme-card{min-height:68px}.theme-card small{display:block;margin-top:5px;color:var(--muted);font-size:10px}
+.continue-list{display:grid;gap:8px}.continue-card{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px}.continue-main{min-width:0}.continue-saint{font-size:10px;color:var(--gold2);font-weight:700}.continue-work{font-size:14px;font-weight:800;margin-top:2px}.continue-day{font-size:10px;color:var(--muted);white-space:nowrap}.empty{border:1px dashed var(--line);padding:18px;border-radius:14px;color:var(--muted);text-align:center;font-size:13px}
+.reader{display:block}.reader.hidden{display:none}.reader-head{padding:1px 1px 14px}.back{display:inline-block;border:0;background:none;color:var(--gold);padding:1px 0 9px;cursor:pointer;font-size:12px;font-family:inherit}.title-row{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}.reader h2{font-size:25px;font-weight:800;line-height:1.25;margin:0;color:#fff5e8}.day-label{font-size:11px;color:var(--gold2);white-space:nowrap;padding-bottom:2px}.work-grid{margin-top:2px}
 .day-progress{margin:0 0 13px}.day-track{display:grid;grid-template-columns:repeat(var(--days),1fr);gap:3px}.day-segment{height:3px;border-radius:8px;background:#33271f}.day-segment.done{background:var(--gold)}
-.verse{background:linear-gradient(155deg,#211912,#18120f);border:1px solid #33271f;border-radius:16px;padding:15px 14px;margin:9px 0}.verse-text{font-size:18px;line-height:1.72;font-weight:700;color:#fff1de;text-align:center}.verse-text br{line-height:2.05}.meaning{border-top:1px solid #392c23;margin-top:12px;padding-top:10px;text-align:left}.meaning-title{color:var(--gold2);font-size:10px;font-weight:800;margin-bottom:3px}.meaning p{margin:0;color:#cdbfb1;font-size:13px;line-height:1.75}.reader-footer{display:flex;justify-content:space-between;margin-top:11px}.pager{width:38px;height:38px;border:1px solid var(--line);background:#1b1511;color:var(--gold2);border-radius:11px;font-family:inherit;font-size:20px;line-height:1;cursor:pointer}.pager:disabled{opacity:.22;cursor:default}.empty{border:1px dashed var(--line);padding:18px;border-radius:14px;color:var(--muted);text-align:center;font-size:13px}.bottom{position:fixed;z-index:30;left:50%;bottom:0;transform:translateX(-50%);width:min(760px,100%);padding:7px 14px calc(7px + env(safe-area-inset-bottom));background:rgba(18,14,11,.98);backdrop-filter:blur(14px);border-top:1px solid rgba(231,174,99,.13);display:flex;justify-content:space-around}.bottom button{border:0;background:none;color:#9e9186;font-family:inherit;font-size:10px;cursor:pointer}.bottom button.active{color:var(--gold2)}.bottom b{display:block;font-size:17px;font-weight:500;margin-bottom:0}
-@media(min-width:600px){main{padding:15px 25px 28px}.saint-grid{grid-template-columns:repeat(3,1fr)}.verse{padding:18px 20px}.verse-text{font-size:20px}}
+.verse{background:linear-gradient(155deg,#211912,#18120f);border:1px solid #33271f;border-radius:16px;padding:15px 14px;margin:9px 0}.verse-text{font-size:18px;line-height:1.72;font-weight:700;color:#fff1de;text-align:center}.meaning{border-top:1px solid #392c23;margin-top:12px;padding-top:10px;text-align:left}.meaning-title{color:var(--gold2);font-size:10px;font-weight:800;margin-bottom:3px}.meaning p{margin:0;color:#cdbfb1;font-size:13px;line-height:1.75}.reader-footer{display:flex;justify-content:space-between;margin-top:11px}.pager{width:38px;height:38px;border:1px solid var(--line);background:#1b1511;color:var(--gold2);border-radius:11px;font-family:inherit;font-size:20px;line-height:1;cursor:pointer}.pager:disabled{opacity:.22;cursor:default}
+.bottom{position:fixed;z-index:30;left:50%;bottom:0;transform:translateX(-50%);width:min(760px,100%);padding:7px 14px calc(7px + env(safe-area-inset-bottom));background:rgba(18,14,11,.98);backdrop-filter:blur(14px);border-top:1px solid rgba(231,174,99,.13);display:flex;justify-content:space-around}.bottom button{border:0;background:none;color:#9e9186;font-family:inherit;font-size:10px;cursor:pointer}.bottom button.active{color:var(--gold2)}.bottom b{display:block;font-size:17px;font-weight:500;margin-bottom:0}
+@media(min-width:600px){main{padding:15px 25px 28px}.saint-grid,.work-grid,.theme-grid{grid-template-columns:repeat(3,1fr)}.verse{padding:18px 20px}.verse-text{font-size:20px}}
 </style>
 </head>
 <body>
@@ -28,37 +32,113 @@ main{padding:12px 16px 24px}.search{margin:4px 0 16px}.search input{width:100%;b
   <div class="top-progress"><i id="progress"></i></div>
 </header>
 <main>
-<section id="homeView">
+<section id="homeView" class="view">
   <div class="search"><input id="search" placeholder="संत किंवा साहित्य शोधा…" autocomplete="off"></div>
-  <div class="section-title"><h3>संत</h3><span id="count"></span></div>
+
+  <section class="section" id="continueSection" hidden>
+    <div class="section-title"><h3>आजचे</h3></div>
+    <div class="continue-list" id="continueList"></div>
+  </section>
+
+  <section class="section">
+    <div class="section-title"><h3>संतांनुसार</h3></div>
+    <div class="saint-grid" id="homeSaintGrid"></div>
+  </section>
+
+  <section class="section">
+    <div class="section-title"><h3>ग्रंथांनुसार</h3></div>
+    <div class="work-grid" id="homeWorkGrid"></div>
+  </section>
+
+  <section class="section">
+    <div class="section-title"><h3>शिकवणीनुसार</h3></div>
+    <div class="theme-grid" id="themeGrid"></div>
+  </section>
+</section>
+
+<section id="saintsView" class="view hidden">
+  <div class="section-title"><h3>संत</h3></div>
   <div class="saint-grid" id="saintGrid"></div>
 </section>
-<section id="worksView" class="reader">
+
+<section id="worksView" class="view hidden">
   <div class="reader-head"><button class="back" id="worksBack">← संतांकडे परत</button><div class="title-row"><h2 id="saintTitle"></h2></div></div>
   <div class="work-grid" id="workGrid"></div>
 </section>
-<section id="readerView" class="reader">
+
+<section id="readerView" class="view hidden">
   <div class="reader-head"><button class="back" id="readerBack">← साहित्याकडे परत</button><div class="day-progress" id="dayProgress"></div><div class="title-row"><h2 id="readerTitle"></h2><span class="day-label" id="dayLabel"></span></div></div>
   <div id="verses"></div>
   <div class="reader-footer"><button class="pager" id="prevBtn" aria-label="मागील दिवस">←</button><button class="pager" id="nextBtn" aria-label="पुढील दिवस">→</button></div>
+</section>
+
+<section id="themeView" class="view hidden">
+  <div class="reader-head"><button class="back" id="themeBack">← मुख्य</button><div class="title-row"><h2 id="themeTitle"></h2></div></div>
+  <div id="themeResults"></div>
 </section>
 </main>
 <div class="bottom"><button class="active" id="homeBtn"><b>⌂</b>मुख्य</button><button id="saintsBtn"><b>✦</b>संत</button><button id="todayBtn"><b>☀</b>आजचे</button></div>
 </div>
 <script>
-const state={saints:[],activeSaint:null,activeWork:null,day:1,query:''};
+const state={saints:[],activeSaint:null,activeWork:null,day:1,activeTheme:null};
+const PROGRESS_KEY='bhajasi_reading_progress_v1';
 const $=s=>document.querySelector(s);
-async function load(){try{const names=await (await fetch('data/saints/index.json')).json();state.saints=await Promise.all(names.map(n=>fetch('data/saints/'+n).then(r=>r.json())));renderSaints()}catch(e){console.error(e);$('#saintGrid').innerHTML='<div class="empty">साहित्य माहिती लोड करता आली नाही.</div>'}}
-function renderSaints(){const q=state.query.trim().toLowerCase();const list=state.saints.filter(s=>(s.name+' '+(s.search||'')+' '+s.works.map(w=>w.title).join(' ')).toLowerCase().includes(q));$('#count').textContent=list.length+' संत';$('#saintGrid').innerHTML=list.map(s=>`<button class="saint-card" onclick="openSaint('${s.id}')"><div class="saint-name">${s.name}</div><div class="saint-work">${s.works.map(w=>w.title).join(' • ')}</div></button>`).join('')||'<div class="empty">शोधाशी जुळणारे साहित्य सापडले नाही.</div>'}
-function hideViews(){['homeView','worksView','readerView'].forEach(id=>$('#'+id).style.display='none');['worksView','readerView'].forEach(id=>$('#'+id).classList.remove('show'))}
-function openSaint(id){const s=state.saints.find(x=>x.id===id);if(!s)return;state.activeSaint=s;hideViews();$('#worksView').style.display='block';$('#worksView').classList.add('show');$('#saintTitle').textContent=s.name;$('#workGrid').innerHTML=s.works.map((w,i)=>`<button class="work-card" onclick="openWork(${i})"><h3>${w.title}</h3></button>`).join('');window.scrollTo({top:0,behavior:'smooth'})}
-function splitPoem(text){return String(text||'').replace(/\s*(।|॥|\.)\s*/g,'$1<br>')}
-function openWork(index){state.activeWork=state.activeSaint.works[index];state.day=1;hideViews();$('#readerView').style.display='block';$('#readerView').classList.add('show');renderReader()}
-function renderReader(){const w=state.activeWork,days=Math.max(1,w.days||1);$('#readerTitle').textContent=w.title;$('#dayLabel').textContent='दिवस '+state.day;$('#dayProgress').style.setProperty('--days',days);$('#dayProgress').innerHTML=`<div class="day-track">${Array.from({length:days},(_,i)=>`<i class="day-segment ${i<state.day?'done':''}"></i>`).join('')}</div>`;const entries=w.entries.filter(e=>!e.day||e.day===state.day);$('#verses').innerHTML=entries.length?entries.map(e=>`<article class="verse"><div class="verse-text">${splitPoem(e.text)}</div><div class="meaning"><div class="meaning-title">अर्थ</div><p>${e.meaning}</p></div></article>`).join(''):'<div class="empty">या दिवसाचे वाचन लवकरच जोडले जाईल.</div>';$('#prevBtn').disabled=state.day<=1;$('#nextBtn').disabled=state.day>=days;window.scrollTo({top:0,behavior:'smooth'})}
-function setDay(d){if(!state.activeWork)return;const days=Math.max(1,state.activeWork.days||1);if(d<1||d>days)return;state.day=d;renderReader()}
-function showHome(){state.activeSaint=null;state.activeWork=null;hideViews();$('#homeView').style.display='block';window.scrollTo({top:0,behavior:'smooth'})}
-$('#worksBack').onclick=()=>showHome();$('#readerBack').onclick=()=>openSaint(state.activeSaint.id);$('#homeBtn').onclick=showHome;$('#saintsBtn').onclick=showHome;$('#todayBtn').onclick=()=>{const first=state.saints[0];if(first)openSaint(first.id)};$('#search').oninput=e=>{state.query=e.target.value;renderSaints()};$('#prevBtn').onclick=()=>setDay(state.day-1);$('#nextBtn').onclick=()=>setDay(state.day+1);
-let touchStartX=0,touchStartY=0;document.addEventListener('touchstart',e=>{if(!$('#readerView').classList.contains('show'))return;const t=e.changedTouches[0];touchStartX=t.clientX;touchStartY=t.clientY},{passive:true});document.addEventListener('touchend',e=>{if(!$('#readerView').classList.contains('show'))return;const t=e.changedTouches[0],dx=t.clientX-touchStartX,dy=t.clientY-touchStartY;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.35){if(dx<0)setDay(state.day+1);else setDay(state.day-1)}},{passive:true});
+const esc=s=>String(s??'').replace(/[&<>\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\\':'&#92;','"':'&quot;'}[c]));
+const themeRules=[
+  {id:'namasmaran',title:'नामस्मरण',keys:['नाम','हरी','हरि','रामकृष्ण','जप','हरिपाठ']},
+  {id:'bhakti',title:'भक्ती',keys:['भक्ति','भक्त','दैवत','देव','हरि']},
+  {id:'jnan',title:'ज्ञान',keys:['ज्ञान','विवेक','आत्म','अद्वय','तत्त्व']},
+  {id:'samata',title:'समता',keys:['सम','सर्वां','समता','एकत्व']},
+  {id:'seva',title:'सेवा',keys:['सेवा','परोपकार','दया','करुणा']},
+  {id:'vairagya',title:'वैराग्य',keys:['वैराग्य','प्रपंच','मोह','अहंकार','विषय']},
+  {id:'sadachar',title:'सदाचार',keys:['सदाचार','सत्य','नीति','धर्म','आचार']},
+  {id:'shanti',title:'मनःशांती',keys:['शांत','शांती','निवांत','मन','स्थिर']}
+];
+function getProgress(){try{return JSON.parse(localStorage.getItem(PROGRESS_KEY)||'{}')}catch{return {}}}
+function saveProgress(key,value){const p=getProgress();p[key]={...(p[key]||{}),...value};localStorage.setItem(PROGRESS_KEY,JSON.stringify(p))}
+function workKey(s,w){return s.id+'::'+w.title}
+function allWorks(){return state.saints.flatMap(s=>s.works.map((w,i)=>({saint:s,work:w,index:i})))}
+function workMatchesTheme(s,w,rule){return (w.entries||[]).some(e=>rule.keys.some(k=>(String(e.text||'')+' '+String(e.meaning||'')+' '+(e.themes||[]).join(' ')).includes(k)))}
+function hideViews(){document.querySelectorAll('.view').forEach(v=>v.classList.add('hidden'));}
+function activateNav(id){document.querySelectorAll('.bottom button').forEach(b=>b.classList.remove('active'));$('#'+id).classList.add('active')}
+async function load(){try{const names=await (await fetch('data/saints/index.json')).json();state.saints=await Promise.all(names.map(n=>fetch('data/saints/'+n).then(r=>r.json())));renderHome();renderSaintDirectory();renderContinue()}catch(e){console.error(e);$('#homeSaintGrid').innerHTML='<div class="empty">साहित्य माहिती लोड करता आली नाही.</div>'}}
+function renderHome(){
+  const q=($('#search').value||'').trim().toLowerCase();
+  const saints=state.saints.filter(s=>(s.name+' '+(s.search||'')+' '+s.works.map(w=>w.title).join(' ')).toLowerCase().includes(q));
+  $('#homeSaintGrid').innerHTML=saints.map(s=>`<button class="saint-card" onclick="openSaint('${esc(s.id)}')"><div class="saint-name">${esc(s.name)}</div><div class="saint-work">${s.works.map(w=>esc(w.title)).join(' • ')}</div></button>`).join('')||'<div class="empty">शोधाशी जुळणारे संतसाहित्य सापडले नाही.</div>';
+  const works=allWorks().filter(x=>!q||(x.saint.name+' '+x.work.title+' '+(x.saint.search||'')).toLowerCase().includes(q));
+  const unique=[];const seen=new Set();works.forEach(x=>{const k=x.saint.id+'::'+x.work.title;if(!seen.has(k)){seen.add(k);unique.push(x)}});
+  $('#homeWorkGrid').innerHTML=unique.map(x=>`<button class="work-card" onclick="openWorkDirect('${esc(x.saint.id)}',${x.index})"><div class="work-name">${esc(x.work.title)}</div><div class="saint-work">${esc(x.saint.name)}</div></button>`).join('')||'<div class="empty">ग्रंथ सापडला नाही.</div>';
+  $('#themeGrid').innerHTML=themeRules.map(r=>`<button class="theme-card" onclick="openTheme('${r.id}')"><div class="theme-name">${r.title}</div><small>संबंधित संतवाणी</small></button>`).join('');
+}
+function renderSaintDirectory(){
+  $('#saintGrid').innerHTML=state.saints.map(s=>`<button class="saint-card" onclick="openSaint('${esc(s.id)}')"><div class="saint-name">${esc(s.name)}</div><div class="saint-work">${s.works.map(w=>esc(w.title)).join(' • ')}</div></button>`).join('');
+}
+function renderContinue(){
+  const p=getProgress();const items=[];state.saints.forEach(s=>s.works.forEach((w,i)=>{const r=p[workKey(s,w)];if(r&&r.started){items.push({s,w,i,r})}}));
+  $('#continueSection').hidden=!items.length;
+  $('#continueList').innerHTML=items.map(x=>`<button class="continue-card" onclick="openWorkDirect('${esc(x.s.id)}',${x.i},${Number(x.r.day)||1})"><div class="continue-main"><div class="continue-saint">${esc(x.s.name)}</div><div class="continue-work">${esc(x.w.title)}</div></div><div class="continue-day">दिवस ${Number(x.r.day)||1} →</div></button>`).join('');
+}
+function openSaint(id){const s=state.saints.find(x=>x.id===id);if(!s)return;state.activeSaint=s;hideViews();activateNav('saintsBtn');$('#worksView').classList.remove('hidden');$('#saintTitle').textContent=s.name;$('#workGrid').innerHTML=s.works.map((w,i)=>`<button class="work-card" onclick="openWork(${i})"><div class="work-name">${esc(w.title)}</div></button>`).join('');window.scrollTo({top:0,behavior:'smooth'})}
+function openWorkDirect(saintId,index,day){const s=state.saints.find(x=>x.id===saintId);if(!s)return;state.activeSaint=s;state.activeWork=s.works[index];state.day=Math.max(1,Number(day)||1);hideViews();$('#readerView').classList.remove('hidden');renderReader();window.scrollTo({top:0,behavior:'smooth'})}
+function openWork(index){openWorkDirect(state.activeSaint.id,index,1)}
+function splitPoem(text){return esc(text).replace(/\s*(।|॥|\.)\s*/g,'$1<br>')}
+function renderReader(){
+  const w=state.activeWork,days=Math.max(1,Number(w.days)||1);$('#readerTitle').textContent=w.title;$('#dayLabel').textContent='दिवस '+state.day;$('#dayProgress').style.setProperty('--days',days);$('#dayProgress').innerHTML=`<div class="day-track">${Array.from({length:days},(_,i)=>`<i class="day-segment ${i<state.day?'done':''}"></i>`).join('')}</div>`;
+  const entries=(w.entries||[]).filter(e=>!e.day||Number(e.day)===state.day);$('#verses').innerHTML=entries.length?entries.map(e=>`<article class="verse"><div class="verse-text">${splitPoem(e.text)}</div><div class="meaning"><div class="meaning-title">अर्थ</div><p>${esc(e.meaning||'')}</p></div></article>`).join(''):'<div class="empty">या दिवसाचे वाचन उपलब्ध नाही.</div>';
+  $('#prevBtn').disabled=state.day<=1;$('#nextBtn').disabled=state.day>=days;
+  saveProgress(workKey(state.activeSaint,w),{started:true,day:state.day,lastItem:entries.length,lastReadAt:new Date().toISOString()});renderContinue();
+}
+function setDay(d){if(!state.activeWork)return;const days=Math.max(1,Number(state.activeWork.days)||1);if(d<1||d>days)return;state.day=d;renderReader();window.scrollTo({top:0,behavior:'smooth'})}
+function showHome(){hideViews();activateNav('homeBtn');$('#homeView').classList.remove('hidden');renderHome();renderContinue();window.scrollTo({top:0,behavior:'smooth'})}
+function showSaints(){hideViews();activateNav('saintsBtn');$('#saintsView').classList.remove('hidden');renderSaintDirectory();window.scrollTo({top:0,behavior:'smooth'})}
+function showToday(){hideViews();activateNav('todayBtn');$('#homeView').classList.remove('hidden');renderContinue();const section=$('#continueSection');if(section.hidden){window.scrollTo({top:0,behavior:'smooth'});return}section.scrollIntoView({behavior:'smooth',block:'start'})}
+function openTheme(id){const rule=themeRules.find(x=>x.id===id);if(!rule)return;state.activeTheme=rule;hideViews();$('#themeView').classList.remove('hidden');$('#themeTitle').textContent=rule.title;const matches=[];allWorks().forEach(x=>(x.work.entries||[]).forEach((e,entryIndex)=>{const hay=String(e.text||'')+' '+String(e.meaning||'')+' '+(e.themes||[]).join(' ');if(rule.keys.some(k=>hay.includes(k)))matches.push({x,e,entryIndex})}));
+  const seen=new Set();const unique=matches.filter(m=>{const k=workKey(m.x.saint,m.x.work)+'::'+m.entryIndex;if(seen.has(k))return false;seen.add(k);return true});
+  $('#themeResults').innerHTML=unique.length?unique.slice(0,30).map(m=>`<button class="continue-card" style="margin-bottom:8px" onclick="openThemeEntry('${esc(m.x.saint.id)}',${m.x.index},${Number(m.e.day)||1})"><div class="continue-main"><div class="continue-saint">${esc(m.x.saint.name)} • ${esc(m.x.work.title)}</div><div class="continue-work">${esc(String(m.e.text||'').slice(0,90))}${String(m.e.text||'').length>90?'…':''}</div></div><div class="continue-day">→</div></button>`).join(''):'<div class="empty">या विषयासाठी सध्या संबंधित साहित्य उपलब्ध नाही.</div>';window.scrollTo({top:0,behavior:'smooth'})}
+function openThemeEntry(saintId,index,day){openWorkDirect(saintId,index,day)}
+$('#worksBack').onclick=()=>showSaints();$('#readerBack').onclick=()=>openSaint(state.activeSaint.id);$('#themeBack').onclick=()=>showHome();$('#homeBtn').onclick=showHome;$('#saintsBtn').onclick=showSaints;$('#todayBtn').onclick=showToday;$('#search').oninput=()=>renderHome();$('#prevBtn').onclick=()=>setDay(state.day-1);$('#nextBtn').onclick=()=>setDay(state.day+1);
+let touchStartX=0,touchStartY=0;document.addEventListener('touchstart',e=>{if($('#readerView').classList.contains('hidden'))return;const t=e.changedTouches[0];touchStartX=t.clientX;touchStartY=t.clientY},{passive:true});document.addEventListener('touchend',e=>{if($('#readerView').classList.contains('hidden'))return;const t=e.changedTouches[0],dx=t.clientX-touchStartX,dy=t.clientY-touchStartY;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.35){if(dx<0)setDay(state.day+1);else setDay(state.day-1)}},{passive:true});
 window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight;$('#progress').style.width=(h>0?(scrollY/h)*100:0)+'%'});load();
 </script>
 </body>
