@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:version='2' class='v2' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+  <meta charset='UTF-8'/>
+  <meta content='width=device-width,initial-scale=1,viewport-fit=cover' name='viewport'/>
+  <meta content='yes' name='mobile-web-app-capable'/>
+  <meta content='black-translucent' name='apple-mobile-web-app-status-bar-style'/>
+  <meta content='भजासी — संतवाणी • अभंग • हरिनाम • चिंतन' name='description'/>
+  <title>भजासी — संतवाणी</title>
+  <b:skin><![CDATA[
+    *{box-sizing:border-box}
+    html,body{margin:0!important;padding:0!important;width:100%;height:100%;overflow:hidden;background:#120e0b}
+    body{font-family:Arial,sans-serif}
+    .bhajasi-shell{position:fixed;inset:0;width:100%;height:100%;overflow:hidden;background:#120e0b}
+    .bhajasi-frame{display:block;width:100%;height:100%;border:0;margin:0;padding:0;background:#120e0b}
+  ]]></b:skin>
+</head>
+<body>
+  <b:section id='main' class='main' maxwidgets='1' showaddelement='no'>
+    <b:widget id='HTML1' type='HTML' locked='true' title='Bhajasi Application'>
+      <b:includable id='main'>
+        <div class='bhajasi-shell'>
+          <iframe class='bhajasi-frame' id='bhajasiApp' src='https://lodhaatbharatr-png.github.io/bhajasi/' title='भजासी — संतवाणी' allow='fullscreen'></iframe>
+        </div>
+      </b:includable>
+    </b:widget>
+  </b:section>
+</body>
+</html>
