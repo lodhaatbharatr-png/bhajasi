@@ -5,24 +5,79 @@
   <meta charset='UTF-8'/>
   <meta content='width=device-width,initial-scale=1,viewport-fit=cover' name='viewport'/>
   <meta content='yes' name='mobile-web-app-capable'/>
-  <meta content='black-translucent' name='apple-mobile-web-app-status-bar-style'/>
+  <meta content='#120e0b' name='theme-color'/>
   <meta content='भजासी — संतवाणी • अभंग • हरिनाम • चिंतन' name='description'/>
   <title>भजासी — संतवाणी</title>
+  <link href='https://fonts.googleapis.com' rel='preconnect'/>
+  <link crossorigin='anonymous' href='https://fonts.gstatic.com' rel='preconnect'/>
+  <link href='https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&amp;display=swap' rel='stylesheet'/>
+  <script src='https://cdn.tailwindcss.com'></script>
+  <script src='https://unpkg.com/react@18/umd/react.development.js'></script>
+  <script src='https://unpkg.com/react-dom@18/umd/react-dom.development.js'></script>
+  <script src='https://unpkg.com/@babel/standalone/babel.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js'></script>
+  <script>
+    tailwind.config={darkMode:'class',theme:{extend:{fontFamily:{dev:['Noto Sans Devanagari','sans-serif']},colors:{bhBg:'#120e0b',bhPanel:'#1b1511',bhLine:'#382a21',bhGold:'#e7ae63',bhCream:'#f4eadc',bhMuted:'#ad9d8e'}}}};
+  </script>
   <b:skin><![CDATA[
-    *{box-sizing:border-box}
-    html,body{margin:0!important;padding:0!important;width:100%;height:100%;overflow:hidden;background:#120e0b}
-    body{font-family:Arial,sans-serif}
-    .bhajasi-shell{position:fixed;inset:0;width:100%;height:100%;overflow:hidden;background:#120e0b}
-    .bhajasi-frame{display:block;width:100%;height:100%;border:0;margin:0;padding:0;background:#120e0b}
+    html,body{margin:0!important;padding:0!important;background:#120e0b!important;color:#f4eadc!important;font-family:'Noto Sans Devanagari',sans-serif!important}
+    #navbar-iframe,.navbar,.Header,.header-outer,.blog-pager,.footer-outer,.sidebar,.BlogArchive,.Attribution,.feed-links{display:none!important}
+    body{min-height:100vh}
   ]]></b:skin>
 </head>
 <body>
   <b:section id='main' class='main' maxwidgets='1' showaddelement='no'>
     <b:widget id='HTML1' type='HTML' locked='true' title='Bhajasi Application'>
       <b:includable id='main'>
-        <div class='bhajasi-shell'>
-          <iframe class='bhajasi-frame' id='bhajasiApp' src='https://lodhaatbharatr-png.github.io/bhajasi/' title='भजासी — संतवाणी' allow='fullscreen'></iframe>
-        </div>
+        <div id='bhajasi-root'></div>
+        <script type='text/babel'>
+        <![CDATA[
+        const {useEffect,useMemo,useState}=React;
+        const RAW='https://raw.githubusercontent.com/lodhaatbharatr-png/bhajasi/main/data/saints/';
+        const KEY='bhajasi_reading_progress_v1';
+        const themes=[
+          ['namasmaran','नामस्मरण',['नाम','हरि','राम','कृष्ण','जप','हरिपाठ']],
+          ['bhakti','भक्ती',['भक्ती','भक्ति','देव','हरी','हरि']],
+          ['jnan','ज्ञान',['ज्ञान','विवेक','आत्म','तत्त्व']],
+          ['samata','समता',['समता','सर्व','एकत्व']],
+          ['seva','सेवा',['सेवा','परोपकार','दया','करुणा']],
+          ['vairagya','वैराग्य',['वैराग्य','मोह','अहंकार','प्रपंच']],
+          ['sadachar','सदाचार',['सत्य','नीति','धर्म','आचार']],
+          ['shanti','मनःशांती',['शांती','शांत','मन','स्थिर']]
+        ];
+        const readProgress=()=>{try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return {}}};
+        const writeProgress=x=>localStorage.setItem(KEY,JSON.stringify(x));
+        const slug=(x)=>String(x||'').toLowerCase().replace(/[^a-z0-9]+/g,'-');
+        function App(){
+          const [saints,setSaints]=useState([]),[view,setView]=useState('home'),[selected,setSelected]=useState(null),[work,setWork]=useState(null),[day,setDay]=useState(1),[theme,setTheme]=useState(null),[q,setQ]=useState(''),[progress,setProgress]=useState(readProgress),[loading,setLoading]=useState(true);
+          useEffect(()=>{(async()=>{try{const names=await fetch(RAW+'index.json').then(r=>r.json());const list=await Promise.all(names.map(n=>fetch(RAW+n).then(r=>r.json())));setSaints(list)}catch(e){console.error(e)}finally{setLoading(false)}})()},[]);
+          const works=useMemo(()=>saints.flatMap(s=>(s.works||[]).map((w,i)=>({s,w,i}))),[saints]);
+          const openSaint=s=>{setSelected(s);setView('saint')};
+          const openWork=(s,w)=>{setSelected(s);setWork(w);setDay(Math.min(...(w.entries||[]).map(x=>x.day||1)));setView('reader')};
+          const startWork=(s,w)=>{setSelected(s);setWork(w);setView('reader');setDay(Math.min(...(w.entries||[]).map(x=>x.day||1)))};
+          const key=(s,w)=>s.id+'::'+w.title;
+          const mark=(s,w,d)=>{const p={...progress,[key(s,w)]:{started:true,lastDay:d,lastReadAt:new Date().toISOString()}};setProgress(p);writeProgress(p)};
+          useEffect(()=>{if(view==='reader'&&selected&&work)mark(selected,work,day)},[day,view]);
+          const days=work?[...new Set((work.entries||[]).map(x=>x.day||1))].sort((a,b)=>a-b):[];
+          const entries=work?(work.entries||[]).filter(x=>(x.day||1)===day):[];
+          const searched=works.filter(x=>!q||(x.s.name+' '+x.w.title+' '+(x.w.search||'')).toLowerCase().includes(q.toLowerCase()));
+          const today=works.filter(x=>progress[key(x.s,x.w)]?.started);
+          const go=v=>{setView(v);if(v==='home')setSelected(null)};
+          const Header=()=> <><header className='sticky top-0 z-30 border-b border-bhLine/70 bg-bhBg/95 backdrop-blur-md'><div className='mx-auto max-w-3xl px-4 py-2'><div className='flex items-center justify-between gap-3'><button onClick={()=>go('home')} className='text-2xl font-extrabold text-bhGold'>भजासी</button><span className='hidden text-[10px] text-bhMuted sm:block'>संतवाणी • अभंग • हरिनाम • चिंतन</span></div><div className='text-[9px] text-bhMuted'>संकलन: भरत रास्वे</div></div></header></>;
+          const Bottom=()=> <nav className='fixed bottom-0 left-0 right-0 z-40 border-t border-bhLine/70 bg-bhBg/98 backdrop-blur-md'><div className='mx-auto flex max-w-3xl justify-around px-2 py-1.5'><button onClick={()=>go('home')} className={'px-5 text-[10px] '+(view==='home'?'text-bhGold':'text-bhMuted')}><i className='fa-solid fa-house mb-0.5 block text-sm'></i>मुख्य</button><button onClick={()=>go('saints')} className={'px-5 text-[10px] '+(view==='saints'?'text-bhGold':'text-bhMuted')}><i className='fa-solid fa-star mb-0.5 block text-sm'></i>संत</button><button onClick={()=>go('today')} className={'px-5 text-[10px] '+(view==='today'?'text-bhGold':'text-bhMuted')}><i className='fa-solid fa-sun mb-0.5 block text-sm'></i>आजचे</button></div></nav>;
+          const Card=({children,onClick,className=''})=><button onClick={onClick} className={'w-full rounded-2xl border border-bhLine bg-gradient-to-br from-[#211912] to-[#17110e] p-4 text-left shadow-sm transition hover:border-[#694d34] '+className}>{children}</button>;
+          const Home=()=> <main className='mx-auto max-w-3xl px-4 pb-24 pt-4'><div className='mb-5'><input value={q} onChange={e=>setQ(e.target.value)} placeholder='संत किंवा साहित्य शोधा…' className='w-full rounded-xl border border-bhLine bg-[#17110e] px-4 py-3 text-sm text-bhCream outline-none focus:border-bhGold'/></div>{today.length>0&&<section className='mb-7'><h2 className='mb-3 text-base font-extrabold'>आजचे</h2><div className='space-y-2'>{today.map(x=><Card key={key(x.s,x.w)} onClick={()=>openWork(x.s,x.w)} className='flex items-center justify-between py-3'><div><div className='text-[10px] font-bold text-bhGold'>{x.s.name}</div><div className='font-bold'>{x.w.title}</div></div><span className='text-xs text-bhMuted'>दिवस {progress[key(x.s,x.w)].lastDay} →</span></Card>)}</div></section>}{[['संतांनुसार',searched.map(x=>x.s).filter((s,i,a)=>a.findIndex(y=>y.id===s.id)===i)],['ग्रंथांनुसार',searched],['शिकवणीनुसार',themes]].map(([title,items],idx)=><section key={title} className='mb-7'><h2 className='mb-3 text-base font-extrabold'>{title}</h2><div className='grid grid-cols-2 gap-2 sm:grid-cols-3'>{idx===0?items.map(s=><Card key={s.id} onClick={()=>openSaint(s)} className='min-h-20'><div className='font-extrabold'>{s.name}</div><div className='mt-1 text-[10px] leading-5 text-bhMuted'>{(s.works||[]).map(w=>w.title).join(' • ')}</div></Card>):idx===1?items.map(x=><Card key={key(x.s,x.w)} onClick={()=>openWork(x.s,x.w)}><div className='font-extrabold'>{x.w.title}</div><div className='mt-1 text-[10px] text-bhMuted'>{x.s.name}</div></Card>):items.map(t=><Card key={t[0]} onClick={()=>{setTheme(t);setView('theme')}}><div className='font-extrabold'>{t[1]}</div></Card>)}</div></section>)}</main>;
+          const Saints=()=> <main className='mx-auto max-w-3xl px-4 pb-24 pt-5'><h2 className='mb-4 text-lg font-extrabold'>संत</h2><div className='grid grid-cols-2 gap-2 sm:grid-cols-3'>{saints.map(s=><Card key={s.id} onClick={()=>openSaint(s)}><div className='font-extrabold'>{s.name}</div><div className='mt-1 text-[10px] text-bhMuted'>{(s.works||[]).map(w=>w.title).join(' • ')}</div></Card>)}</div></main>;
+          const Saint=()=> <main className='mx-auto max-w-3xl px-4 pb-24 pt-4'><button onClick={()=>go('saints')} className='mb-4 text-xs text-bhGold'>← संतांकडे परत</button><h2 className='mb-4 text-xl font-extrabold'>{selected?.name}</h2><div className='grid grid-cols-2 gap-2 sm:grid-cols-3'>{(selected?.works||[]).map((w,i)=><Card key={i} onClick={()=>openWork(selected,w)}><div className='font-extrabold'>{w.title}</div><div className='mt-1 text-[10px] text-bhMuted'>{w.entries?.length||0} वाचन नोंदी</div></Card>)}</div></main>;
+          const Today=()=> <main className='mx-auto max-w-3xl px-4 pb-24 pt-5'><h2 className='mb-4 text-lg font-extrabold'>आजचे</h2>{today.length?<div className='space-y-2'>{today.map(x=><Card key={key(x.s,x.w)} onClick={()=>openWork(x.s,x.w)} className='flex items-center justify-between'><div><div className='text-[10px] font-bold text-bhGold'>{x.s.name}</div><div className='font-extrabold'>{x.w.title}</div></div><span className='text-xs text-bhMuted'>दिवस {progress[key(x.s,x.w)].lastDay} →</span></Card>)}</div>:<div className='rounded-2xl border border-dashed border-bhLine p-7 text-center text-sm text-bhMuted'>अजून वाचन सुरू केलेले नाही.</div>}</main>;
+          const Theme=()=>{const [id,title,keys]=theme||[];const found=works.flatMap(x=>(x.w.entries||[]).filter(e=>keys.some(k=>(e.text+' '+(e.meaning||'')).includes(k))).map(e=>({...x,e})));return <main className='mx-auto max-w-3xl px-4 pb-24 pt-4'><button onClick={()=>go('home')} className='mb-4 text-xs text-bhGold'>← मुख्य</button><h2 className='mb-4 text-xl font-extrabold'>{title}</h2><div className='space-y-2'>{found.slice(0,30).map((x,i)=><Card key={i} onClick={()=>{setSelected(x.s);setWork(x.w);setDay(x.e.day||1);setView('reader')}}><div className='text-xs font-bold text-bhGold'>{x.s.name} • {x.w.title}</div><div className='mt-2 text-sm font-semibold leading-7'>{x.e.text}</div></Card>)}</div></main>};
+          const Reader=()=>{const next=()=>setDay(days.find(d=>d>day)||day);const prev=()=>setDay([...days].reverse().find(d=>d<day)||day);useEffect(()=>{const fn=e=>{if(view!=='reader')return;if(Math.abs(e.changedTouches[0].clientX-e.targetTouches?.[0]?.clientX)>80)return};return()=>{}},[]);return <main className='mx-auto max-w-3xl px-4 pb-24 pt-3' onTouchStart={e=>e.currentTarget.dataset.x=e.touches[0].clientX} onTouchEnd={e=>{const x=Number(e.currentTarget.dataset.x),dx=e.changedTouches[0].clientX-x;if(Math.abs(dx)>70){if(dx<0)next();else prev()}}}><button onClick={()=>setView('saint')} className='mb-3 text-xs text-bhGold'>← साहित्याकडे परत</button><div className='mb-3 flex gap-1'>{days.map(d=><span key={d} className={'h-1 flex-1 rounded '+(d<=day?'bg-bhGold':'bg-[#33271f]')}></span>)}</div><div className='mb-4 flex items-end justify-between gap-3'><h2 className='text-xl font-extrabold text-white'>{work?.title}</h2><span className='whitespace-nowrap text-[11px] text-bhGold'>दिवस {day}</span></div>{entries.map((e,i)=><article key={i} className='mb-3 rounded-2xl border border-[#33271f] bg-gradient-to-br from-[#211912] to-[#18120f] p-4'><div className='whitespace-pre-line text-center text-[17px] font-semibold leading-8 text-[#fff1de]'>{String(e.text||'').replace(/\s*(॥|।|\.)\s*/g,'$1\n')}</div><div className='mt-4 border-t border-[#392c23] pt-3'><div className='mb-1 text-[10px] font-extrabold text-bhGold'>अर्थ</div><p className='text-sm leading-7 text-[#cdbfb1]'>{e.meaning||'अर्थ उपलब्ध नाही.'}</p></div></article>)}<div className='mt-3 flex justify-between'><button disabled={day===days[0]} onClick={prev} className='h-9 w-9 rounded-xl border border-bhLine bg-bhPanel text-lg text-bhGold disabled:opacity-20'>←</button><button disabled={day===days[days.length-1]} onClick={next} className='h-9 w-9 rounded-xl border border-bhLine bg-bhPanel text-lg text-bhGold disabled:opacity-20'>→</button></div></main>};
+          if(loading)return <><Header/><main className='mx-auto max-w-3xl px-4 py-20 text-center text-sm text-bhMuted'>संतसाहित्य लोड होत आहे…</main></>;
+          return <div className='min-h-screen bg-bhBg font-dev text-bhCream'><Header/>{view==='home'&&<Home/>}{view==='saints'&&<Saints/>}{view==='saint'&&<Saint/>}{view==='today'&&<Today/>}{view==='reader'&&<Reader/>}{view==='theme'&&<Theme/>}<Bottom/></div>;
+        }
+        ReactDOM.createRoot(document.getElementById('bhajasi-root')).render(<App/>);
+        ]]>
+        </script>
       </b:includable>
     </b:widget>
   </b:section>
