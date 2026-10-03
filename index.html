@@ -952,7 +952,7 @@ function formatSubTitle(title, parentTitle) {
     if (parentTitle && title.startsWith(parentTitle)) {
         return title.replace(new RegExp('^' + parentTitle + '\\s*[-—–]?\\s*', 'u'), '').trim() || title;
     }
-    return title.replace(/^ज्ञानेश्वरी\s*[-—–]?\s*/u, '').trim();
+    return title.trim();
 }
 
 function App() {
@@ -1953,7 +1953,7 @@ function App() {
                                         >
                                             <div className='bhajasi-card-title'>{subTitle}</div>
                                             <div className='bhajasi-card-sub'>
-                                                {totalVerses ? `ओव्या ${totalVerses} • ` : ''}दिवस {sec.days || 1}
+                                                {totalVerses ? `${sec.type || 'ओव्या'} ${totalVerses} • ` : ''}दिवस {sec.days || 1}
                                             </div>
                                         </button>
                                     );
